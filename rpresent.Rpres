@@ -1,0 +1,74 @@
+
+Presentation for Developing Data Products Course Project
+========================================================
+author: mjdata
+date:
+autosize: true
+
+```{r, echo = FALSE}
+library(knitr)
+opts_chunk$set(cache=TRUE)
+```
+
+Overview
+========================================================
+
+- This 5 pages presentation (including title page) is done in Rstudio Presenter.
+- It contains some embedded R code that gets run when slidifying the document.
+- It is hosted on Rpubs.
+- It includes some analysis on mtcars dataset
+
+
+About mtcars
+========================================================
+- mtcars is available in R package {datasets}
+- The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+- [source]: <https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html>
+
+
+Data Format
+=========================================================
+A data frame with 32 observations on 11 variables.
+
+- `mpg`:  Miles/(US) gallon
+- `cyl`:  Number of cylinders
+- `disp`: Displacement (cu.in.)
+- `hp`:   Gross horsepower
+- `drat`: Rear axle ratio
+- `wt`:   Weight (1000 lbs)
+- `qsec`: 1/4 mile time
+- `vs`:   V/S
+- `am`:   Transmission (0 = automatic, 1 = manual)
+- `gear`: Number of forward gears
+- `carb`: Number of carburetors
+
+
+Data Summary
+=======================================================================
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(ggplot2); library(dplyr); library(datasets)
+```
+
+```{r}
+summary(mtcars)
+```
+
+
+Scatter Plots of mtcars
+===============================================================
+
+```{r, echo = FALSE}
+ggplot(mtcars,aes(x = wt, y=mpg, col= factor(cyl))) +
+        geom_point(size = 1.5) +
+        geom_smooth(method = lm, se = TRUE, color = "black") +
+        labs(title = "mpg vs. wt")
+```
+
+***
+```{r, echo = FALSE}
+ggplot(mtcars,aes(x = drat, y = mpg, col = factor(am))) +
+        geom_point(size = 1.5) +
+        geom_smooth(method = lm, se = TRUE, color = "black") +
+        labs(title = "mpg.vs. drat")
+```
+
